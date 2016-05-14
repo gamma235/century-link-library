@@ -12,10 +12,10 @@
 
 ;; begin tests
 (deftest single-manager-total
-  (is 3900 (core/total-for-manager sample-graph)))
+  (is (= 3900 (core/total-for-manager sample-graph))))
 
 (deftest multiple-manager-totals
-  (is '(3900 2100 1800) (core/totals-for-managers sample-graph-long)))
+  (is (= '(3900 2100 1800) (core/totals-for-managers sample-graph-long))))
 
 (deftest multiple-managers-sum
-  (is 7800 (core/sum-total-for-managers sample-graph-long)))
+  (is (= 7800 (core/sum-total-for-managers sample-graph-long))))
