@@ -4,7 +4,7 @@
 (ns century-link-library.utils)
 
 ;; walk the tree for an individual manager, and recursively flatten it
-(defn get-underlings2 [employee-graph]
+(defn get-underlings [employee-graph]
   (loop [graph employee-graph
          underlings []]
     (if (== (count graph) 0) underlings
