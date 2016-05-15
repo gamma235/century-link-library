@@ -19,3 +19,5 @@
 
 (deftest multiple-managers-sum
   (is (= 7800 (core/sum-total-for-managers sample-graph-long))))
+
+(run-tests)

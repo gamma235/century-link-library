@@ -4,13 +4,13 @@
 (ns century-link-library.utils)
 
 ;; walk the tree for an individual manager, and recursively flatten it
-(defn get-underlings [employee-graph]
+(defn get-underlings2 [employee-graph]
   (loop [graph employee-graph
          underlings []]
     (if (== (count graph) 0) underlings
-      (cond (= clojure.lang.PersistentVector (type (:manager graph)))
+      (cond (vector? (:manager graph))
               (recur (dissoc graph :manager) (into (conj underlings :manager) (:manager graph)))
-            (= clojure.lang.PersistentArrayMap (type (:manager graph)))
+            (map? (:manager graph))
               (recur (:manager graph) (conj underlings :manager))))))
 
 ;; take a flattened tree and return a list of appropriate values
