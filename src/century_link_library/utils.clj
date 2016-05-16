@@ -1,14 +1,10 @@
-(ns century-link-library.utils
-  (:require [clojure.walk :as walk]))
+(ns century-link-library.utils)
 
-;; Walk the tree and recursively flatten it
-;; Assertions added for type guarantees on input and output
-(defn walk [graph]
-  {:pre  [(coll? graph)]
+;; Uses tail call recursion to walk and flatten tree, so JVM will blow stack on deeply nested inputs
+(defn walk [x]
+  {:pre [(or (coll? x) (keyword? x))]
    :post [(every? keyword? %)]}
-  (let [state (atom [])]
-    (walk/postwalk #(when (keyword? %) (swap! state conj %)) graph)
-    @state))
+  (if (coll? x) (mapcat walk x) [x]))
 
 ;; Takes a flattened tree and return a list of appropriate values
 (defn set-values [employee-vector]
