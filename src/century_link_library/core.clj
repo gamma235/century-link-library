@@ -9,7 +9,7 @@
        utils/total-value))
 
 (defn totals-for-managers [multiple-manager-graph]
-  "Returns vector of total costs for multiple managers"
+  "Returns list of total costs for multiple managers"
   (map #(total-for-manager %) multiple-manager-graph))
 
 (defn sum-total-for-managers [multiple-manager-graph]

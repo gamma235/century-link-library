@@ -7,11 +7,11 @@
   (if (coll? x) (mapcat walk x) [x]))
 
 ;; Takes a flattened tree and return a list of appropriate values
-(defn set-values [employee-vector]
+(defn set-values [employee-keys]
   (map #(cond (= % :manager)   300
               (= % :developer) 1000
-              (= % :qa)        500) employee-vector))
+              (= % :qa)        500) employee-keys))
 
 ;; reduce +
-(defn total-value [value-vector]
-  (reduce + value-vector))
+(defn total-value [employee-values]
+  (reduce + employee-values))
