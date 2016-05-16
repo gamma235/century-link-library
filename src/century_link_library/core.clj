@@ -1,17 +1,17 @@
 (ns century-link-library.core
   (:require [century-link-library.utils :as utils]))
 
-;; Gives total cost for input
 (defn total-for-manager [manager-graph]
+  "Gives total cost for input"
   (->> manager-graph
        utils/walk
        utils/set-values
        utils/total-value))
 
-;; Returns vector of total costs for multiple managers
 (defn totals-for-managers [multiple-manager-graph]
+  "Returns vector of total costs for multiple managers"
   (map #(total-for-manager %) multiple-manager-graph))
 
-;; Returns the sum of all costs for multiple managers
 (defn sum-total-for-managers [multiple-manager-graph]
-  (reduce + (totals-for-managers multiple-manager-graph)))
+  "Same as calling total-for-manager, but more readable when applied to graph of multiple managers"
+  (total-for-manager multiple-manager-graph))
