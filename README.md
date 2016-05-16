@@ -8,4 +8,4 @@ To run tests, you can call (run-tests) directly from a repl after loading the ce
 `java -cp /path/to/clojure.jar clojure.main -i file.to.run.clj` from the command line.
 
 # TODO:
-1. The tests are sparse at this point and are not checking for nil or against type. It would be good to add them in and/or include constraints in the original functions themselves.
+1. The tests are sparse at this point and are not checking for nil or against type. I have included assertions in the tree-walking function itself, however, so it should throw an exception if input is not a collection type or if output is not a sequence of keywords.

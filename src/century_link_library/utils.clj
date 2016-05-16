@@ -4,7 +4,7 @@
 ;; Walk the tree and recursively flatten it
 ;; Assertions added for type guarantees on input and output
 (defn walk [graph]
-  {:pre  [(or (vector? graph) (map? graph))]
+  {:pre  [(coll? graph)]
    :post [(every? keyword? %)]}
   (let [state (atom [])]
     (walk/postwalk #(when (keyword? %) (swap! state conj %)) graph)
