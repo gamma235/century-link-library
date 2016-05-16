@@ -1,17 +1,14 @@
 ;; private helper functions for library
 ;; _____________________________
 
-(ns century-link-library.utils)
+(ns century-link-library.utils
+  (:require [clojure.walk :as walk]))
 
-;; walk the tree for an individual manager, and recursively flatten it
-(defn get-underlings [employee-graph]
-  (loop [graph employee-graph
-         underlings []]
-    (if (== (count graph) 0) underlings
-      (cond (vector? (:manager graph))
-              (recur (dissoc graph :manager) (into (conj underlings :manager) (:manager graph)))
-            (map? (:manager graph))
-              (recur (:manager graph) (conj underlings :manager))))))
+;; walk the tree and recursively flatten it
+(defn walk [graph]
+  (let [state (atom [])]
+    (walk/postwalk #(when (keyword? %) (swap! state conj %)) graph)
+    @state))
 
 ;; take a flattened tree and return a list of appropriate values
 (defn set-values [employee-vector]
