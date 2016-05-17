@@ -16,7 +16,7 @@
   (map #(total-for-manager %) multiple-manager-graph))
 
 (defn sum-total-for-managers
-  "returns sum value for multiple managers"
+  "Returns sum value for multiple managers"
   [multiple-manager-graph]
   {:pre [(and (> (count multiple-manager-graph) 1) (every? map? multiple-manager-graph))]
    :post [(number? %)]}
