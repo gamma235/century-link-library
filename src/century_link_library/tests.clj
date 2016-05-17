@@ -4,9 +4,7 @@
 
 ;; Unit Tests
 (deftest single-manager-total
-  (let [sample-graph {:manager
-                      {:manager
-                       {:manager
+  (let [sample-graph {:manager {:manager {:manager
                         [:developer {:manager [:developer :developer :qa :qa]} :developer :qa :qa]}}}]
     (is (= 7200 (core/total-for-manager sample-graph)))))
 
@@ -24,9 +22,7 @@
     (is (= '(3900 5400 1800) (core/totals-for-managers sample-graph-long)))))
 
 (deftest multiple-not-single-manager-total
-  (let [sample-graph {:manager
-                      {:manager
-                       {:manager
+  (let [sample-graph {:manager {:manager {:manager
                         [:developer {:manager [:developer :developer :qa :qa]} :developer :qa :qa]}}}]
     (is (try (core/totals-for-managers sample-graph)
           (catch AssertionError e true)))))
